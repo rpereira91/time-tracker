@@ -72,9 +72,10 @@ class TimeTracker(object):
         # print("Do {} for {} minutes".format(current_act, duration))
         # gets the same result but looks sloppier imo
         # print("Do {} for {} minutes".format(self.activities['activity_name'][random.randint(0,len(self.activities)-1)], np.random.choice((np.arange(5,max_time+1,5)),1)))
-     
+    # prints out the log along with the info
     def print_log(self):
         print(self.log_file)
+    # get the numer of activities
     def get_total_activities(self):
         return len(self.log_file['activity_name'])
     # Data Processing 
@@ -99,6 +100,7 @@ if __name__ == "__main__":
     #set the quickness to null so the user can set it for the first time
     q = None
     #keep the loop going
+    print("\n---------------\nACTIVITY TRACKER\n---------------\n")
     while True:
         tt.print_log()
         choice =input("Pick (1) to input an activity or (2) to pick a random one. (3) or Ctrl + C to close program\n")
