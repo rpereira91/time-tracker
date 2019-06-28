@@ -1,6 +1,7 @@
-activity_name,0,1,2,3,4,5,6
-act_1,
-act_2,
-act_3,
-act_4,
-act_5,
+activity_name,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday, Sunday
+act_1,0,0,0,0,10,0,0
+act_2,0,0,0,0,20,0,0
+act_3,0,0,0,0,0,0,0
+act_4,0,0,0,0,0,0,0
+act_5,0,0,0,0,0,0,0
+act_6,0,0,0,0,5,0,0
