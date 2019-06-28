@@ -75,7 +75,8 @@ class TimeTracker(object):
      
     def print_log(self):
         print(self.log_file)
-    
+    def get_total_activities(self):
+        return len(self.log_file['activity_name'])
     # Data Processing 
     #get the total minutes for the week
     def get_total(self):
@@ -95,10 +96,24 @@ class TimeTracker(object):
 
 if __name__ == "__main__":
     tt = TimeTracker()
-    # tt.record_activity(0,10)
-    # tt.record_activity(2,10)
-    tt.print_log()
-    tt.pick_random(quick=True)
-    tt.print_log()
-    tt.get_total()
-        
+    #set the quickness to null so the user can set it for the first time
+    q = None
+    #keep the loop going
+    while True:
+        tt.print_log()
+        choice =input("Pick (1) to input an activity or (2) to pick a random one. (3) or Ctrl + C to close program\n")
+        if choice == "1":
+            act_no = int(input("Enter the activity number (the one beside the name): "))
+            duration = int(input("Enter the duration: "))
+            if act_no > tt.get_total_activities()-1 or act_no < 0:
+                print("Please input a number between 0 and {}".format(tt.get_total_activities()-1))
+            else:
+                tt.record_activity(act_no, duration)
+        elif choice == "2":
+            if not q:
+                q = input("Do you want it to be quick? (5 minutes) \t Y/N: ").lower()
+            tt.pick_random(quick=True if q == "y" else False)
+        elif choice == "3":
+            exit()
+        else:
+            print("Wront Input\n\n\n")

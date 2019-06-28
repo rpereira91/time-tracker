@@ -5,6 +5,8 @@ I found myself with a lot of free time and a lot of hobbies I just felt like I w
 
 I was also trying to get better at using Pandas and Numpy for Data Processing so I figured this would be a fun way to get some practice. 
 ## How to use it
+Just run it and follow the instructions :D 
+It's pretty simple right now so there's not a lot to do in it
 ## Requirements
 - Python (duh!) 
 - Pip (to install the libraries) 
@@ -19,3 +21,4 @@ Just run ``` pip install -r requirements.txt ``` to install all the requirements
 	- Average time per day/week
 	- Graphs (possibly using Seaborn or Matplotlib) 
 - Clean up the code a bit 
+- Input validation 
