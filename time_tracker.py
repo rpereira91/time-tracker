@@ -60,9 +60,14 @@ class TimeTracker(object):
     # passed variables are the max time you want to work for and if you just want to do a quick activity or not
     def pick_random(self, max_time=30, quick = False):
         # pick a random activity you want to do from the list
+        act_count = 0
         rand_act = random.randint(0,len(self.activities)-1)
-        # while self.done_today(rand_act):
-        #     rand_act = random.randint(0,len(self.activities)-1)
+        while self.done_today(rand_act):
+            rand_act = random.randint(0,len(self.activities)-1)
+            act_count += 1
+            if act_count > len(self.activities)*1:
+                break
+
 
         #if you only want to do something quickly it will do it for 5 minutes 
         if quick:
