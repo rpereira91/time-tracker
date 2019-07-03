@@ -46,16 +46,24 @@ class TimeTracker(object):
         #print out the activity and the duration
         print("Activity Name: {} Duration: {}".format(current_act,duration))
         #edit the log file with the new duration
-        self.log_file.ix[act_no,(self.today.weekday()+1)] += duration
+        # self.log_file.ix[act_no,(self.today.weekday()+1)] += duration
+        self.log_file.iloc[act_no,(self.today.weekday()+1)] += duration
         # write the dataframe to the log file
         self.log_file.to_csv(self.file_name, index=False)
-
+    def done_today(self,act_no):
+        if self.log_file.iloc[act_no, (self.today.weekday()+1)] > 0:
+            return True
+        else:
+            return False
     #pick a random activity, right now it's randomly selected but down the line it 
     # would be useful to use some kind of algorithm to pick the activity done the least or something
     # passed variables are the max time you want to work for and if you just want to do a quick activity or not
     def pick_random(self, max_time=30, quick = False):
         # pick a random activity you want to do from the list
         rand_act = random.randint(0,len(self.activities)-1)
+        # while self.done_today(rand_act):
+        #     rand_act = random.randint(0,len(self.activities)-1)
+
         #if you only want to do something quickly it will do it for 5 minutes 
         if quick:
             self.record_activity(rand_act,5)
