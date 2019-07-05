@@ -107,13 +107,16 @@ class TimeTracker(object):
     #get the average for the days
     def get_daily_average(self):
         return True
+    
+    def get_day_total(self, day):
+        return sum(self.log_file[day])
 
-if __name__ == "__main__":
-    tt = TimeTracker()
-    #set the quickness to null so the user can set it for the first time
-    q = None
-    #keep the loop going
+
+
+
+def run_program():
     print("\n---------------\nACTIVITY TRACKER\n---------------\n")
+    q = None
     while True:
         tt.print_log()
         choice =input("Pick (1) to input an activity or (2) to pick a random one. (3) or Ctrl + C to close program\n")
@@ -132,3 +135,13 @@ if __name__ == "__main__":
             exit()
         else:
             print("Wront Input\n\n\n")
+
+
+if __name__ == "__main__":
+    tt = TimeTracker()
+    #set the quickness to null so the user can set it for the first time
+ 
+    # run_program()
+    #keep the loop going
+    print(tt.get_day_total('Thursday'))
+    tt.print_log()
