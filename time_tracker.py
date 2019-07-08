@@ -58,7 +58,7 @@ class TimeTracker(object):
     #pick a random activity, right now it's randomly selected but down the line it 
     # would be useful to use some kind of algorithm to pick the activity done the least or something
     # passed variables are the max time you want to work for and if you just want to do a quick activity or not
-    def pick_random(self, max_time=30, quick = False):
+    def pick_random(self, max_time=60, quick = False):
         # pick a random activity you want to do from the list
         act_count = 0
         rand_act = random.randint(0,len(self.activities)-1)
