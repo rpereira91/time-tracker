@@ -3,9 +3,11 @@ import pandas as pd
 import numpy as np
 import random
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 import os.path
 from os import path
+import io
 # time tracker class
 class TimeTracker(object):
     def __init__(self):
@@ -95,9 +97,12 @@ class TimeTracker(object):
     #get the total minutes for the week
     def get_total(self):
         return True
-    #get the totals per day
+    #get the totals per day, with the day titles zipped to each total
     def get_day_totals(self):
-        return True
+        day_totals = []
+        for day in self.weekdays:
+            day_totals.append(self.get_day_total(day))
+        return zip(self.weekdays, day_totals)
     #get the hours for the day
     def get_daily_hours(self):
         return True
@@ -111,6 +116,23 @@ class TimeTracker(object):
     def get_day_total(self, day):
         return sum(self.log_file[day])
 
+    def show_daily_totals(self):
+        day_totals = []
+        for day in self.weekdays:
+            day_totals.append(self.get_day_total(day))
+
+        y_pos = np.arange(len(self.weekdays))
+        plt.bar(y_pos, day_totals, align='center', alpha=0.5)
+        plt.xticks(y_pos, self.weekdays)
+        plt.ylabel('Minutes')
+        plt.title('Daily Activity Totals')
+
+        # plt.show()
+
+        bytes_image = io.BytesIO()
+        plt.savefig(bytes_image, format='png')
+        bytes_image.seek(0)
+        return bytes_image
 
 
 
@@ -143,5 +165,5 @@ if __name__ == "__main__":
  
     # run_program()
     #keep the loop going
-    print(tt.get_day_total('Thursday'))
     tt.print_log()
+    tt.show_daily_totals()
