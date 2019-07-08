@@ -97,12 +97,11 @@ class TimeTracker(object):
     #get the total minutes for the week
     def get_total(self):
         return True
-    #get the totals per day, with the day titles zipped to each total
     def get_day_totals(self):
         day_totals = []
         for day in self.weekdays:
             day_totals.append(self.get_day_total(day))
-        return zip(self.weekdays, day_totals)
+        return day_totals
     #get the hours for the day
     def get_daily_hours(self):
         return True
@@ -112,23 +111,24 @@ class TimeTracker(object):
     #get the average for the days
     def get_daily_average(self):
         return True
-    
+    #get the totals per day, with the day titles zipped to each total
+
+    def get_days_zipped(self):
+        return zip(self.weekdays, self.get_day_totals())
     def get_day_total(self, day):
         return sum(self.log_file[day])
 
     def show_daily_totals(self):
-        day_totals = []
-        for day in self.weekdays:
-            day_totals.append(self.get_day_total(day))
+        day_totals = self.get_day_totals()
 
         y_pos = np.arange(len(self.weekdays))
-        plt.bar(y_pos, day_totals, align='center', alpha=0.5)
-        plt.xticks(y_pos, self.weekdays)
-        plt.ylabel('Minutes')
+        plt.barh(y_pos, day_totals, align='center', alpha=0.5)
+        plt.yticks(y_pos, self.weekdays)
+        plt.xlabel('Minutes')
         plt.title('Daily Activity Totals')
 
         # plt.show()
-
+        # used to show the image in the flask webpage
         bytes_image = io.BytesIO()
         plt.savefig(bytes_image, format='png')
         bytes_image.seek(0)

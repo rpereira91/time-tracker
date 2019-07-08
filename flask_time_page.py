@@ -7,10 +7,10 @@ week_day_totals = []
 @app.route('/')
 def display_hello():
     return render_template('index.html', 
-        totals=tt.get_day_totals())
+        totals=tt.get_days_zipped())
 
 @app.route('/plots/daily_breakdown', methods=['GET'])
-def correlation_matrix():
+def daily_breakdown():
     bytes_obj = tt.show_daily_totals()
     
     return send_file(bytes_obj,
