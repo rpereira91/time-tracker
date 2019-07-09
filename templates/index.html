@@ -12,13 +12,15 @@
 
     <div class="header">
         <p>
-            <h3>Daily Minutes</h3>
-            {% for total in totals %}
-            <!-- total[0] is the string representation of the day and total[1] is the total number of minutes  -->
-                {{ total[0] }}: {{ total[1] }} min
-                <br>
-            {% endfor %}
-            <img src="{{ url_for('daily_breakdown') }}" />
+           <form method="POST">
+                <select name="activities" method="GET" action="/">
+                    {% for act in acts %}
+                        <option value= "{{ act|e }}">{{ act|e }}</option>
+                        {% endfor %}
+                </select>
+                <input type="number" name="duration" min="5" max="60">
+                <input type="submit" value="Submit">
+            </form>
         </p>
     </div>
 </body>
