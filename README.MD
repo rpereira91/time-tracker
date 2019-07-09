@@ -1,11 +1,14 @@
 
-# Time Tracker Script
+# Time Tracker 
 
   
 
 ## Description
 
 I found myself with a lot of free time and a lot of hobbies I just felt like I would forget a lot of them and just end up doing nothing useful with my time. So I decided to write something that will help keep track of the smaller things I would often forget about. Right now it's only a CLI but the logic can be expanded to a web application or directly ported to mobile using React or something similar.
+
+###EDIT: 2019-07-08
+- Added flask front end and changed up how the data was stored/read. 
 
   
 

@@ -24,7 +24,7 @@ class TimeTracker(object):
         self.today = datetime.today().strftime('%Y-%m-%d')
 
     def save_file(self):
-        self.log_file.fillna(0, inplace=True)
+        self.log_file.fillna(0.0, inplace=True)
         self.log_file.to_csv(self.file_name, index=False)
 
     
@@ -45,13 +45,34 @@ class TimeTracker(object):
         return list(self.log_file.columns[1:])
 
     def get_today_total(self):
-        print(self.log_file.loc[self.log_file['date'] == self.today])
-        
+        print(self.log_file.loc[self.log_file['date'] == self.today,self.get_acts()].sum())
+
+    def get_all_act_total(self):
+        totals = []
+        for act in self.get_acts():
+            totals.append(self.get_act_total(act))
+        return totals
+
+    def get_act_total(self, act_name=""):
+        return (int(self.log_file[act_name].sum()))
+
+    def show_act_totals(self):
+        acts = self.get_acts()
+        y_pos = np.arange(len(acts))
+        performance = self.get_acts()
+
+        plt.bar(y_pos, self.get_all_act_total(), align='center', alpha=0.5)
+        plt.xticks(y_pos, self.get_acts())
+        plt.ylabel('Activities')
+        plt.title('Time spent (minutes)')
+
+        plt.show()
 if __name__ == "__main__":
     tt = TimeTracker()
     tt.show_log()
     # tt.record_activity('act_2',20)
     # tt.record_activity('act_5',40)
-    print(tt.get_acts())
+    tt.show_act_totals()
+    
 
         

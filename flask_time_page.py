@@ -21,4 +21,4 @@ def display_hello():
 #                      mimetype='image/png')
 if __name__ == "__main__":
     tt = TimeTracker()
-    app.run()
+    app.run(host= '127.0.0.1', port=5000, debug=True)
