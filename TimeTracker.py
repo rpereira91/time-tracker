@@ -11,17 +11,18 @@ import io
 class TimeTracker(object):
     """docstring for TimeTracker."""
     def __init__(self):
-        self.set_today()
         self.file_name = "Logs/activity_log.csv"
         self.log_file = pd.read_csv(self.file_name)
         self.log_file.sort_values(by=['date'], ascending=False, inplace=True)
+        self.set_today()
         #if this is the first time program is started today add todays date
-        if (self.log_file.loc[self.log_file['date'] == self.today]).empty:
-            self.log_file = self.log_file.append({'date':self.today}, ignore_index=True)
-            self.save_file()
+        
 
     def set_today(self):
         self.today = datetime.today().strftime('%Y-%m-%d')
+        if (self.log_file.loc[self.log_file['date'] == self.today]).empty:
+            self.log_file = self.log_file.append({'date':self.today}, ignore_index=True)
+            self.save_file()
 
     def save_file(self):
         self.log_file.fillna(0.0, inplace=True)
@@ -34,10 +35,15 @@ class TimeTracker(object):
     def remove_activity(self, activity_name):
         self.log_file.drop(activity_name, axis=1, inplace=True)
         self.save_file()
+    def do_random_act(self):
+        all_Acts = self.get_acts()
+        print(all_Acts[random.randint(0,len(all_Acts)-2)])
+        return True
     def show_log(self):
         print (self.log_file.head(7))
 
     def record_activity(self, act_no, duration):
+        self.set_today()
         self.log_file.loc[self.log_file['date'] == self.today , act_no] += duration
         self.save_file()
 
@@ -45,7 +51,7 @@ class TimeTracker(object):
         return list(self.log_file.columns[1:])
 
     def get_today_total(self):
-        print(self.log_file.loc[self.log_file['date'] == self.today,self.get_acts()].sum())
+        return (self.log_file.loc[self.log_file['date'] == self.today,self.get_acts()].sum())
 
     def get_all_act_total(self):
         totals = []

@@ -15,6 +15,8 @@ I found myself with a lot of free time and a lot of hobbies I just felt like I w
 I was also trying to get better at using Pandas and Numpy for Data Processing so I figured this would be a fun way to get some practice.
 
 ## How to use it
+Run the ```flask_time_page.py```
+### Old
 Add whatever activities you want to do in the ```actvities.csv``` file, I personally have my hobbies and random things I need to do (laundry, dishes, cleaning etc) but I'm usually too lazy to do. 
 
 Once the activities are added to the list just run it and follow the instructions :D

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Main page</title>
+    <title>Add Activity</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="{{ url_for('static', filename='css/main.css') }}" />
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
@@ -11,28 +11,19 @@
 <body>
 
     <div class="header">
-            Activity tracker
-            <div class="header-right">
-            <a href="{{url_for('add_acts')}}">
                 Add Activity
+            <div class="header-right">
+            <a href="{{url_for('display_hello')}}">
+                Go Back
             </a>
             </div>
     </div>
-    <div>
         <p>
            <form method="POST">
-                <select name="activities" method="GET" action="/">
-                    {% for act in acts %}
-                        <option value= "{{ act|e }}">{{ act|e }}</option>
-                        {% endfor %}
-                </select>
-                <input type="number" name="duration" min="5" max="180">
+
+                <input type="text" name="new_act" min="5" max="60">
                 <input type="submit" value="Submit">
             </form>
-            {{total_min}}
-           <h4>Today's total (min): {{min_sum}}</h4>
-           <h4>Today's total (hr): {{min_sum/60}}</h4>
         </p>
-    </div>
 </body>
 </html>
