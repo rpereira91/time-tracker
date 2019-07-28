@@ -11,28 +11,38 @@
 <body>
 
     <div class="header">
-            Activity tracker
-            <div class="header-right">
-            <a href="{{url_for('add_acts')}}">
-                Add Activity
+            <a href="{{url_for('display_hello')}}">
+                Home
             </a>
-            </div>
+        <div class="header-right">
+        <a href="{{url_for('add_acts')}}">
+            Add Activity
+        </a>
+        <a href="{{url_for('random_act')}}">
+            Random Activity
+        </a>
+        </div>
     </div>
-    <div>
-        <p>
-           <form method="POST">
-                <select name="activities" method="GET" action="/">
+    <h2>Activity Tracker</h2>
+    <br>
+    <div class="container">
+        <div class="input-area">
+            <label for="activities">Select an activity from the drop down list: </label>
+            <form method="POST">
+                <select id='act-list'name="activities" method="GET" action="/">
                     {% for act in acts %}
-                        <option value= "{{ act|e }}">{{ act|e }}</option>
-                        {% endfor %}
+                    <option value= "{{ act|e }}">{{ act|e }}</option>
+                    {% endfor %}
                 </select>
-                <input type="number" name="duration" min="5" max="180">
-                <input type="submit" value="Submit">
-            </form>
-            {{total_min}}
-           <h4>Today's total (min): {{min_sum}}</h4>
-           <h4>Today's total (hr): {{min_sum/60}}</h4>
-        </p>
+                <br>
+                <label for="duration">How long did you do this for? </label>
+                    <input id='act-time' type="number" name="duration" step="5" min='0'>
+                    <br>
+                    <input id='submit-button' type="submit" value="Submit">
+                </form>
+               <h4>Today's total (min): {{min_sum}}</h4>
+               <h4>Today's total (hr): {{min_sum/60}}</h4>
+        </div>
     </div>
 </body>
 </html>

@@ -11,19 +11,24 @@
 <body>
 
     <div class="header">
-                Add Activity
+               
             <div class="header-right">
             <a href="{{url_for('display_hello')}}">
                 Go Back
             </a>
             </div>
     </div>
-        <p>
-           <form method="POST">
-
-                <input type="text" name="new_act" min="5" max="60">
-                <input type="submit" value="Submit">
-            </form>
-        </p>
+        <div class='container'>
+            <div>
+                <h2>Add Activity</h2>
+                <br>
+               <form method="POST">
+                   <label for="new_act">New Activity Name</label> <br>
+                    <input type="text" name="new_act">
+                    <br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
 </body>
 </html>
