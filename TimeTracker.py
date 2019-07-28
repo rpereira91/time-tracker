@@ -37,8 +37,7 @@ class TimeTracker(object):
         self.save_file()
     def do_random_act(self):
         all_Acts = self.get_acts()
-        print(all_Acts[random.randint(0,len(all_Acts)-2)])
-        return True
+        return (all_Acts[random.randint(0,len(all_Acts)-2)])
     def show_log(self):
         print (self.log_file.head(7))
 

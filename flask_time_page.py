@@ -14,7 +14,7 @@ def display_hello():
 	todays_sum = 0
 	for total in todays_totals:
 		todays_sum += total
-	print(tt.do_random_act())
+	
 	
 	return render_template('index.html',
 		acts=tt.get_acts(),total_min=todays_totals, min_sum = todays_sum)
@@ -27,7 +27,14 @@ def add_acts():
 
 	return render_template('add_acts.html',
 		acts=tt.get_acts())
+@app.route('/random_act', methods=['GET', 'POST'])
+def random_act():
+	if request.method == 'POST':
+		return render_template('random_act.html',
+		random_act=tt.do_random_act())
 
+	return render_template('random_act.html',
+	random_act=tt.do_random_act())
 # @app.route('/plots/daily_breakdown', methods=['GET'])
 # def daily_breakdown():    
 #     return send_file(bytes_obj,
